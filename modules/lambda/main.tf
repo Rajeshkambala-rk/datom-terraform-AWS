@@ -46,9 +46,11 @@ resource "aws_iam_role_policy_attachment" "lambda_vpc" {
 resource "aws_lambda_function" "main" {
   filename         = "lambda.zip"
   function_name    = "${var.environment}-function"
-  role            = aws_iam_role.lambda.arn
-  handler         = "index.handler"
-  runtime         = "nodejs18.x"
+  role             = aws_iam_role.lambda.arn
+  handler          = "index.handler"
+  runtime          = "nodejs18.x"
+
+  source_code_hash = "0893FA857AB6B2E55C28967F8DB6161A00C01C8738EB860B70538D19B300398C"
 
   vpc_config {
     subnet_ids         = var.private_subnet_ids
