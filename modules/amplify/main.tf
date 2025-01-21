@@ -2,7 +2,7 @@
 #   name         = "${var.environment}-app"
 #   repository   = var.repository_url
 
-#   # 👇 Use this for authentication
+#   # 👇 Use this for authentication.
 #   oauth_token = var.github_access_token  # 👈 Corrected authentication method
 
 #   # Enable auto branch creation
