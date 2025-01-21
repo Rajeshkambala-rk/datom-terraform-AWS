@@ -36,7 +36,7 @@ db_skip_final_snapshot = true
 
 # Amplify configuration
 repository_url      = "https://github.com/Rajeshkambala-rk/wildrydes-site-AWS-Amplify.git"
-github_access_token = "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"
+github_access_token = "****************************"
 
 # AWS credentials (add securely, e.g., from a secret manager or environment variables)
 # aws_access_key    = "your_aws_access_key_here"
@@ -47,8 +47,8 @@ domain_name       = "example.com"  # Replace with your domain name
 
 # CloudFront configuration (if applicable)
 cloudfront_domain_name       = "your_cloudfront_domain_name_here"
-cloudfront_hosted_zone_id    = "Z2FDTNDATAQYW2"
+cloudfront_hosted_zone_id    = "*********"
 cloudfront_distribution_arn  = "your_cloudfront_distribution_arn_here"
 
 # AWS Account ID (required for certain services like Cognito, WAF, or KMS)
-aws_account_id    = "961341531404"
+aws_account_id    = "**************"
