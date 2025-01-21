@@ -1,25 +1,21 @@
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "us-west-2"
 }
 
 variable "environment" {
   description = "Environment name"
   type        = string
-  default     = "dev"
 }
 
 variable "vpc_cidr" {
   description = "CIDR block for VPC"
   type        = string
-  default     = "10.0.0.0/16"
 }
 
 variable "availability_zones" {
   description = "Availability zones"
   type        = list(string)
-  default     = ["us-west-2a", "us-west-2b"]
 }
 
 variable "db_name" {
@@ -46,63 +42,74 @@ variable "repository_url" {
 variable "aws_access_key" {
   description = "AWS Access Key"
   type        = string
-  default     = ""
 }
 
 variable "aws_secret_key" {
   description = "AWS Secret Key"
   type        = string
-  default     = ""
-}
-
-variable "db_kms_key" {
-  description = "KMS key ARN for encrypting the database"
-  type        = string
-}
-
-variable "db_multi_az" {
-  description = "Enable Multi-AZ deployment for high availability"
-  type        = bool
-  default     = true
-}
-
-variable "db_skip_final_snapshot" {
-  description = "Skip final snapshot before deletion (false for production)"
-  type        = bool
-  default     = false
-}
-
-variable "db_final_snapshot_identifier" {
-  description = "Final snapshot identifier before database deletion"
-  type        = string
-  default     = "final-snapshot"
-}
-variable "db_instance_class" {
-  description = "The instance type for the RDS database"
-  type        = string
-  default     = "db.t3.micro"  # Adjust based on workload needs
 }
 
 variable "db_allocated_storage" {
   description = "The allocated storage size (GB) for the database"
   type        = number
-  default     = 20
+}
+
+variable "db_instance_class" {
+  description = "The instance type for the RDS database"
+  type        = string
 }
 
 variable "db_engine" {
   description = "The database engine (e.g., postgres, mysql)"
   type        = string
-  default     = "postgres"
 }
 
 variable "db_engine_version" {
   description = "The version of the database engine"
   type        = string
-  default     = "14.7"
+}
+
+variable "db_skip_final_snapshot" {
+  description = "Skip final snapshot before deletion"
+  type        = bool
 }
 
 variable "github_access_token" {
-  description = "The GitHub access token"
+  description = "GitHub access token for Amplify"
   type        = string
+}
 
+# Variables for Cognito, KMS, Route53, and WAF modules
+variable "aws_account_id" {
+  description = "AWS Account ID"
+  type        = string
+}
+
+variable "domain_name" {
+  description = "Domain name for Route53 (e.g., example.com)"
+  type        = string
+  validation {
+    condition     = can(regex("^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$", var.domain_name))
+    error_message = "Domain name must be a valid domain name format (e.g., example.com)."
+  }
+}
+
+# variable "domain_name" {
+#   description = "Domain name for Route53"
+#   type        = string
+# }
+
+variable "cloudfront_domain_name" {
+  description = "CloudFront distribution domain name"
+  type        = string
+}
+
+variable "cloudfront_hosted_zone_id" {
+  description = "CloudFront distribution hosted zone ID"
+  type        = string
+}
+
+variable "cloudfront_distribution_arn" {
+  description = "CloudFront distribution ARN for Shield protection"
+  type        = string
 }
